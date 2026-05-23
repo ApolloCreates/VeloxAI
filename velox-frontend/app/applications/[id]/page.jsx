@@ -5,6 +5,9 @@ import { useParams } from "next/navigation";
 import API from "../../../services/api";
 import StatusTimeline from "../../../components/StatusTimeline";
 
+const BASE_URL = import.meta.env.NEXT_PUBLIC_API_URL;
+
+
 export default function ApplicationDetail() {
   const { id } = useParams();
 
@@ -42,7 +45,7 @@ export default function ApplicationDetail() {
       {/* DOWNLOAD */}
       {data.pdf && (
         <a
-          href={`http://127.0.0.1:8000/apply/download/${data.pdf}`}
+          href={`${BASE_URL}/apply/download/${data.pdf}`}
           target="_blank"
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
