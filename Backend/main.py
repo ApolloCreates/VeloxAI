@@ -14,7 +14,7 @@ def startup():
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://your-app.vercel.app",
+        "https://velox-reon487bc-mohit-pandeys-projects-9a1825b0.vercel.app/",
         "http://localhost:3000",
     ],
     allow_credentials=True,
