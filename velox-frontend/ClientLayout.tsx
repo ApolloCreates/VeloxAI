@@ -1,37 +1,38 @@
 "use client";
 
 import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [dark, setDark] = useState(() => {
-    if (typeof window !== 'undefined') {
+  const initialDark = useMemo(() => {
+    if (typeof window !== "undefined") {
       return localStorage.getItem("theme") === "dark";
     }
     return false;
-  });
+  }, []);
 
-  // ✅ Apply on toggle
+  const [dark, setDark] = useState(initialDark);
+
   useEffect(() => {
     if (dark) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [dark]);
 
   const toggleTheme = () => {
-    const newTheme = !dark;
-    setDark(newTheme);
-    localStorage.setItem("theme", newTheme ? "dark" : "light");
+    setDark((prev) => !prev);
   };
 
   return (
-    <div className="min-h-full flex flex-col transition-colors duration-300 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+    <div className="min-h-screen transition-colors duration-300 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
       <Toaster position="top-right" />
 
       <button
