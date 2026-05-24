@@ -5,8 +5,6 @@ import { useParams } from "next/navigation";
 import API from "../../../services/api";
 import StatusTimeline from "../../../components/StatusTimeline";
 
-const BASE_URL = import.meta.env.NEXT_PUBLIC_API_URL;
-
 
 export default function ApplicationDetail() {
   const { id } = useParams();
